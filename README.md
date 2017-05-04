@@ -11,4 +11,4 @@ this is for info viz final project
  python collect.py -q zika -d data
 
  It will produce the list of tweets for the query "zika"
- in the file data/zika_apple.json
+ in the file data/collect_zika.json
