@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>dc.js - Heatmap Example</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="./static/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./static/css/dc.css"/>
+    <script type="text/javascript" src="./static/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./static/js/jquery-2.0.3.min.js"></script>
+    <style>
+      .heat-box {
+        stroke: #E6E6E6;
+        stroke-width: 2px;
+      }
+    </style>
+</head>
+
+<header>
+  
+    <div class="navbar-header" style="margin-left:20px">
+        <a class="navbar-brand" href="#">
+          <h2>Michelson–Morley experiment</h2>
+      </a>
+      <div class="container-fluid">
+    <button type="button" href="javascript:RowChart.filterAll();dc.redrawAll();" class="btn btn-success reset" aria-label="Left Align" 
+    style="margin-top:20px; margin-bottom:0px; margin-right:20px; height:44px">
+      <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span> Reset
+    </button>
+
+  </div>
+    </div>
+
+</header>
+
+<body>
+<div class="container-fluid">
+
+<div class="row" style="margin-top:150px; margin-left:10px">
+      <div class='col-xs-5'>
+        <div class="panel panel-success" >
+          <div class="panel-heading">
+            <h3 class="panel-title">sentiment</h3>
+          </div>
+          <div class="panel-body">
+            <div id="test" style="height:850px"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class='col-xs-7'>
+        <div class="panel panel-success" >
+          <div class="panel-heading">
+            <h3 class="panel-title">topic model</h3>
+          </div>
+          <div class="panel-body">
+            <div id="row" style="height:480px"></div>
+          </div>
+        </div>
+        <div class="panel panel-success" >
+          <div class="panel-heading">
+            <h3 class="panel-title">Tweets</h3>
+          </div>
+          <div class="panel-body">
+            <div id="datatable" style="height:350px">
+              <table class="table table-hover dc-data-table" id="data-table">
+                <thead>
+                    <tr class='header'>
+  
+                     </tr>
+                </thead>
+              </table>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+</div>
+<!--
+<div id="test"></div>
+<div id="row"></div>
+<div id="datatable">
+  <table class="table table-hover dc-data-table" id="data-table">
+                <thead>
+                    <tr class='header'>
+                        
+                        <th>tweet</th>
+                     </tr>
+                </thead>
+            </table>
+</div>
+-->
+<script type="text/javascript" src="./static/js/d3.js"></script>
+<script type="text/javascript" src="./static/js/crossfilter.js"></script>
+<script type="text/javascript" src="./static/js/dc.js"></script>
+<script type="text/javascript">
+
+var chartGroup = "chartGroup";
+var chart = dc.heatMap("#test",chartGroup);
+var RowChart = dc.rowChart("#row",chartGroup);
+var datatable = dc.dataTable('#datatable',chartGroup);
+d3.csv("./data/tst.csv", function(error, experiments) {
+  var ndx    = crossfilter(experiments),
+      dim = ndx.dimension(function(d) {return d.x}),
+      g = dim.group().reduceSum(function(d){return d.senti;}),
+      runDim = ndx.dimension(function(d) { return [+d.x, +d.y]; }),
+      runGroup = runDim.group().reduceSum(function(d) { return +d.senti; });
+  chart
+    .width(15 * 20 + 80)
+    .height(15 * 40 + 40)
+    .dimension(runDim)
+    .group(runGroup)
+    .keyAccessor(function(d) { return +d.key[0]; })
+    .valueAccessor(function(d) { return +d.key[1]; })
+    .colorAccessor(function(d) { return +d.value; })
+    .title(function(d) {
+        return "x:   " + d.key[0] + "\n" +
+               "y:  " + d.key[1] + "\n" +
+               "sentiment : " + (d.value) ;})
+    .colors(d3.scale.linear()
+     .domain([0,1000])
+     .range(['steelblue','red']))
+    .calculateColorDomain();
+  chart.render();
+
+  RowChart.dimension(dim)
+        .group(g)
+        .height(500)
+        .width(500);
+  RowChart.render();
+
+  datatable.dimension(runDim)
+            .group(function(d) {
+            return '   ';
+          })
+          .size(10)
+          .columns([
+            function(d) { return d.text; },
+          ]);
+  datatable.render();
+/*
+var chartGroup = "chartGroup";
+var chart = dc.heatMap("#test",chartGroup);
+var RowChart = dc.rowChart("#row",chartGroup);
+d3.csv("./data/morley.csv", function(error, experiments) {
+  var ndx    = crossfilter(experiments),
+      runDim = ndx.dimension(function(d) { return [+d.x, +d.y]; }),
+      dim = ndx.dimension(function(d) {return d.x}),
+      g = dim.group().reduceCount(function(d){return d.y;});
+      runGroup = runDim.group().reduceSum(function(d) { return +d.senti; });
+  var c = 1
+  chart
+    .width(15 * 20 + 80)
+    .height(15 * 40 + 40)
+    .dimension(runDim)
+    .group(runGroup)
+    .keyAccessor(function(d) { return +d.key[0]; })
+    .valueAccessor(function(d) { return +d.key[1]; })
+    .colorAccessor(function(d) { 
+      d.value = d.senti;
+      console.log(parseFloat(d.value));
+      return +d.value; })
+    .colors(d3.scale.linear()
+     .domain([0,1000])
+     .range(['steelblue','red']));
+  chart.xBorderRadius(0);
+  chart.yBorderRadius(0);
+  chart.render();
+  RowChart.dimension(dim)
+        .group(g)
+        .width(500);
+  RowChart.render();
+*/
+});
+</script>
+
+</div>
+</body>
+</html>
