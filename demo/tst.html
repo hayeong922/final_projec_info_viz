@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>dc.js - Heatmap Example</title>
+    <title>Zika Explore</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="./static/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="./static/css/dc.css"/>
@@ -12,17 +12,26 @@
         stroke: #E6E6E6;
         stroke-width: 2px;
       }
+      .dc-data-count .total-count {
+          color: #3182bd;
+          font-weight: bold;
+      }
+      .dc-data-count .filter-count {
+          color: #3182bd;
+          font-weight: bold;
+      }
     </style>
+
 </head>
 
 <header>
   
     <div class="navbar-header" style="margin-left:20px">
         <a class="navbar-brand" href="#">
-          <h2>Michelson–Morley experiment</h2>
+          <h2>Zika Explore</h2>
       </a>
       <div class="container-fluid">
-    <button type="button" href="javascript:RowChart.filterAll();dc.redrawAll();" class="btn btn-success reset" aria-label="Left Align" 
+    <button type="button" href="javascript:dc.filterAll();dc.redrawAll();" class="btn btn-success reset" aria-label="Left Align" 
     style="margin-top:20px; margin-bottom:0px; margin-right:20px; height:44px">
       <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span> Reset
     </button>
@@ -36,24 +45,34 @@
 <div class="container-fluid">
 
 <div class="row" style="margin-top:150px; margin-left:10px">
-      <div class='col-xs-5'>
+      <div class='col-xs-6'>
         <div class="panel panel-success" >
           <div class="panel-heading">
             <h3 class="panel-title">sentiment</h3>
           </div>
           <div class="panel-body">
-            <div id="test" style="height:850px"></div>
+            <div id="test" style="height:550px"></div>
           </div>
         </div>
+
+        <div class="panel panel-success" >
+          <div class="panel-heading">
+            <h3 class="panel-title">time series</h3>
+          </div>
+          <div class="panel-body">
+            <div id="time_series" style="height:250px"></div>
+          </div>
+        </div>
+
       </div>
 
-      <div class='col-xs-7'>
+      <div class='col-xs-6'>
         <div class="panel panel-success" >
           <div class="panel-heading">
             <h3 class="panel-title">topic model</h3>
           </div>
           <div class="panel-body">
-            <div id="row" style="height:480px"></div>
+            <div id="row" style="height:300px"></div>
           </div>
         </div>
         <div class="panel panel-success" >
@@ -61,7 +80,7 @@
             <h3 class="panel-title">Tweets</h3>
           </div>
           <div class="panel-body">
-            <div id="datatable" style="height:350px">
+            <div id="datatable" style="height:500px">
               <table class="table table-hover dc-data-table" id="data-table">
                 <thead>
                     <tr class='header'>
@@ -76,20 +95,7 @@
       </div>
 
 </div>
-<!--
-<div id="test"></div>
-<div id="row"></div>
-<div id="datatable">
-  <table class="table table-hover dc-data-table" id="data-table">
-                <thead>
-                    <tr class='header'>
-                        
-                        <th>tweet</th>
-                     </tr>
-                </thead>
-            </table>
-</div>
--->
+
 <script type="text/javascript" src="./static/js/d3.js"></script>
 <script type="text/javascript" src="./static/js/crossfilter.js"></script>
 <script type="text/javascript" src="./static/js/dc.js"></script>
@@ -99,15 +105,27 @@ var chartGroup = "chartGroup";
 var chart = dc.heatMap("#test",chartGroup);
 var RowChart = dc.rowChart("#row",chartGroup);
 var datatable = dc.dataTable('#datatable',chartGroup);
+var timeSeries = dc.lineChart("#time_series",chartGroup);
+
 d3.csv("./data/tst.csv", function(error, experiments) {
+
+  var timeFormat = d3.time.format("%a %b %d %H:%M:%S");
+
+  experiments.forEach(function(d){
+      d.times = timeFormat.parse(d.created_at.substr(0,18));
+  });
+
   var ndx    = crossfilter(experiments),
-      dim = ndx.dimension(function(d) {return d.x}),
-      g = dim.group().reduceSum(function(d){return d.senti;}),
+      dim = ndx.dimension(function(d) {return d.topic;}),
+      g = dim.group().reduceCount(function(d){return d.x;}),
       runDim = ndx.dimension(function(d) { return [+d.x, +d.y]; }),
-      runGroup = runDim.group().reduceSum(function(d) { return +d.senti; });
+      runGroup = runDim.group().reduceSum(function(d) { return +d.senti; }),
+      dimHour = ndx.dimension(function(d){return d3.time.hour(d.times)}),
+      hourGroup = dimHour.group().reduceCount(function(d){return d.times;});
+
   chart
-    .width(15 * 20 + 80)
-    .height(15 * 40 + 40)
+    .width(19 * 31 + 80)
+    .height(16 * 32 + 40)
     .dimension(runDim)
     .group(runGroup)
     .keyAccessor(function(d) { return +d.key[0]; })
@@ -121,11 +139,13 @@ d3.csv("./data/tst.csv", function(error, experiments) {
      .domain([0,1000])
      .range(['steelblue','red']))
     .calculateColorDomain();
+  chart.xBorderRadius(0);
+  chart.yBorderRadius(0);
   chart.render();
 
   RowChart.dimension(dim)
         .group(g)
-        .height(500)
+        .height(300)
         .width(500);
   RowChart.render();
 
@@ -133,44 +153,23 @@ d3.csv("./data/tst.csv", function(error, experiments) {
             .group(function(d) {
             return '   ';
           })
-          .size(10)
+          .size(13)
           .columns([
-            function(d) { return d.text; },
+            function(d) { return '*'+d.text; },
           ]);
   datatable.render();
-/*
-var chartGroup = "chartGroup";
-var chart = dc.heatMap("#test",chartGroup);
-var RowChart = dc.rowChart("#row",chartGroup);
-d3.csv("./data/morley.csv", function(error, experiments) {
-  var ndx    = crossfilter(experiments),
-      runDim = ndx.dimension(function(d) { return [+d.x, +d.y]; }),
-      dim = ndx.dimension(function(d) {return d.x}),
-      g = dim.group().reduceCount(function(d){return d.y;});
-      runGroup = runDim.group().reduceSum(function(d) { return +d.senti; });
-  var c = 1
-  chart
-    .width(15 * 20 + 80)
-    .height(15 * 40 + 40)
-    .dimension(runDim)
-    .group(runGroup)
-    .keyAccessor(function(d) { return +d.key[0]; })
-    .valueAccessor(function(d) { return +d.key[1]; })
-    .colorAccessor(function(d) { 
-      d.value = d.senti;
-      console.log(parseFloat(d.value));
-      return +d.value; })
-    .colors(d3.scale.linear()
-     .domain([0,1000])
-     .range(['steelblue','red']));
-  chart.xBorderRadius(0);
-  chart.yBorderRadius(0);
-  chart.render();
-  RowChart.dimension(dim)
-        .group(g)
-        .width(500);
-  RowChart.render();
-*/
+
+  timeSeries.width(650)
+    .height(250)
+    .transitionDuration(500)
+    .margins({top: 10, right: 10, bottom: 20, left: 40})
+    .dimension(dimHour)
+    .group(hourGroup)
+    .elasticY(true)
+    .x(d3.time.scale().domain(d3.extent(experiments, function(d) { return d.times; })))
+    .xAxis();
+  timeSeries.render();
+
 });
 </script>
 
