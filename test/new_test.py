@@ -32,7 +32,7 @@ word2vec = Word2Vec.load(path + 'word2vec.pkl')
 
 def classify_tweet(tweet):
     """
-    Classify a tweet with either a positive (1) or negative (0) sentiment.
+    Classify a tweet sentiment polarity score.
     Poliarity score between 0 to 1 postive, -1 to 0 negativce
     """
 
@@ -41,47 +41,10 @@ def classify_tweet(tweet):
     blob = TextBlob(text)
     sent = blob.sentiment.polarity
 
-    # print('original',text)
-    # print('text',blob)
-    # print('sentiment',sent)
-
-    if sent > 0 and sent <= 1:
-        return 1,text
-    elif sent >= -1 and sent<=0:
-        return 0,text
+    return sent, text
 
 
-    # print('classify',tweet)
-    # print('classify text',tweet.text)
-    # print('classify text list',[tweet.text])
-    # print('np.array',np.array([tweet.text]))
-    # # test, original
-    # print('np.array',np.array([tweet.text]),type(np.array([tweet.text])), type([tweet.text]),type(tweet.text))
-    # print('vecotorizer',vectorizer.transform(np.array([tweet.text])))
-    #
-    # pred = classifier.predict(vectorizer.transform(np.array([tweet.text])))
-    # print('pred',pred)
-    #
-    # return str(pred[0])
-
-
-    # # # print('tweet',type(tweet),tweet)
-    # # # print('tweet np array',type(np.array([tweet])),np.array([tweet]))
-    # pred = classifier.predict(vectorizer.transform(list))
-    # # input = str(tweet.encode('ascii','ignore'))
-    # # #input = input.split()
-    # # print('input',input)
-    # # print('type',type(input))
-    # # pred = classifier.predict(vectorizer.transform(input))
-    # # #
-    # # #pred = classifier.predict(vectorizer.transform(np.array(tweet['text'])))
-    # # #
-    # # # print('classify done')
-    # # #
-    # # # print('a',str(pred[0]))
-    # # #
-    # return str(pred[0])
-
+    
 
 def vectorize_tweet(tweet):
     """
