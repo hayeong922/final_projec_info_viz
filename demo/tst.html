@@ -31,10 +31,7 @@
           <h2>Zika Explore</h2>
       </a>
       <div class="container-fluid">
-    <button type="button" href="javascript:dc.filterAll();dc.redrawAll();" class="btn btn-success reset" aria-label="Left Align" 
-    style="margin-top:20px; margin-bottom:0px; margin-right:20px; height:44px">
-      <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span> Reset
-    </button>
+    
 
   </div>
     </div>
@@ -135,9 +132,7 @@ d3.csv("./data/tst.csv", function(error, experiments) {
         return "x:   " + d.key[0] + "\n" +
                "y:  " + d.key[1] + "\n" +
                "sentiment : " + (d.value) ;})
-    .colors(d3.scale.linear()
-     .domain([0,1000])
-     .range(['steelblue','red']))
+    .colors(["#081d58","#253494","#225ea8","#1d91c0","#41b6c4","#c4a540","#c48640","#c47440","#c44d40"])
     .calculateColorDomain();
   chart.xBorderRadius(0);
   chart.yBorderRadius(0);
@@ -146,7 +141,7 @@ d3.csv("./data/tst.csv", function(error, experiments) {
   RowChart.dimension(dim)
         .group(g)
         .height(300)
-        .width(500);
+        .width(600);
   RowChart.render();
 
   datatable.dimension(runDim)
