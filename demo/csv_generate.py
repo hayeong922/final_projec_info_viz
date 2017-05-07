@@ -71,3 +71,5 @@ def main():
 
             writer.writerow(d)
         csvfile.close()
+if __name__ == '__main__':
+    main()
