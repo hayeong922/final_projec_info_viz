@@ -55,7 +55,7 @@
 <body>
 <div class="container-fluid">
 
-<div class="row" style="margin-top:150px; margin-left:10px">
+<div class="row" style="margin-top:100px; margin-left:10px">
       <div class='col-xs-6'>
         <div class="panel panel-success" >
           <div class="panel-heading">
@@ -164,7 +164,7 @@ d3.csv("./data/tst.csv", function(error, data) {
                "y:  " + d.key[1] + "\n" +
                "sentiment : " + (d.value) ;})
     //color range: dark blue represnets negative and red represents positive
-    .colors(["#081d58","#253494","#225ea8","#1d91c0","#41b6c4","#c4a540","#c48640","#c47440","#c44d40"])
+    .colors(["#c44d40","#c47440","#c48640","#c4a540","#b2bdc1","#1d91c0","#225ea8","#253494","#1f4ed1"])
     .calculateColorDomain();
   //set the shape of cells
   heatmap.xBorderRadius(0.9);
