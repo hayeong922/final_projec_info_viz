@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="./static/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="./static/css/dc.css"/>
-    <script type="text/javascript" src="./static/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="./static/js/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="./static/js/bootstrap.min.js"></script>
     <style>
       .heat-box {
         stroke: #E6E6E6;
@@ -45,7 +45,18 @@
             <div id="test" style="height:850px"></div>
           </div>
         </div>
+          <div class="panel panel-success" >
+              <div class="panel-heading">
+                  <h3 class="panel-title">Time Series</h3>
+              </div>
+              <div class="panel-body">
+                  <div id="time" style="height:350px">
+                  </div>
+              </div>
+          </div>
+
       </div>
+
 
       <div class='col-xs-7'>
         <div class="panel panel-success" >
@@ -56,6 +67,7 @@
             <div id="row" style="height:480px"></div>
           </div>
         </div>
+
         <div class="panel panel-success" >
           <div class="panel-heading">
             <h3 class="panel-title">Tweets</h3>
@@ -73,6 +85,7 @@
             </div>
           </div>
         </div>
+
       </div>
 
 </div>
@@ -99,12 +112,17 @@ var chartGroup = "chartGroup";
 var chart = dc.heatMap("#test",chartGroup);
 var RowChart = dc.rowChart("#row",chartGroup);
 var datatable = dc.dataTable('#datatable',chartGroup);
+var timeChart = dc.rowChart('#time',chartGroup);
+
 d3.csv("./data/tst.csv", function(error, experiments) {
+    //Wed May 03 23:39:55 +0000 2017
+
   var ndx    = crossfilter(experiments),
       dim = ndx.dimension(function(d) {return d.x}),
       g = dim.group().reduceSum(function(d){return d.senti;}),
       runDim = ndx.dimension(function(d) { return [+d.x, +d.y]; }),
       runGroup = runDim.group().reduceSum(function(d) { return +d.senti; });
+
   chart
     .width(15 * 20 + 80)
     .height(15 * 40 + 40)
@@ -138,6 +156,53 @@ d3.csv("./data/tst.csv", function(error, experiments) {
             function(d) { return d.text; },
           ]);
   datatable.render();
+
+
+  var dtgFormat = d3.time.format("%a %B %d %H:%M%S %S+0000 %Y")
+
+    console.log(dtgFormet)
+   data.forEach(function(d){
+        d.dtg1 = d.origintime.substr(0,19);
+        d.dtg = dtgFormat.parse(d.origintime.substr(0,19));
+
+
+    });
+
+    var facts = crossfilter(data);
+    var all = facts.groupAll();
+
+    var ByHour = facts.dimension(function(d){
+        return d3.time.hour(d.dtg)
+    });
+
+    var ByHourGroup = facts.dimension(function(d){
+        reduceCount(function(d){return d.dtg;})
+    });
+
+    // count all the facts
+    dc.dataCount(".dc-data-count")
+        .dimension(facts)
+        .group(all);
+
+   timeChart.width(960)
+       .height(150)
+       .margins({top: 10, right: 10, bottom: 20, left: 40})
+       .dimension(ByHour)
+       .group(ByHourGroup)
+       .transitionDuration(500)
+       .elasticY(true)
+       .x(d3.time.scale().domain(d3.extent(data, function(d) { return d.dtg; })))
+       .xAxis();
+   timeChart.render();
+
+
+//    timeChart.dimension(dim)
+//        .group(g)
+//        .height(500)
+//        .width(500);
+//   timeChart.render();
+
+
 /*
 var chartGroup = "chartGroup";
 var chart = dc.heatMap("#test",chartGroup);
