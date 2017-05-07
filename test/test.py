@@ -11,6 +11,11 @@ from sklearn.externals import joblib
 from gensim.models import Word2Vec
 from tokenizer import *
 import json
+import csv
+
+
+from textblob import TextBlob
+
 
 
 # the code was adopted from https://github.com/jdwittenauer/twitter-viz-demo and made slight change
@@ -23,26 +28,22 @@ pca = joblib.load(path + 'pca.pkl')
 word2vec = Word2Vec.load(path + 'word2vec.pkl')
 
 
+
+
 def classify_tweet(tweet):
     """
-    Classify a tweet with either a positive (1) or negative (0) sentiment.
+    Classify a tweet sentiment polarity score.
+    Poliarity score between 0 to 1 postive, -1 to 0 negativce
     """
-    #print('tweet',type(tweet),tweet)
-    #print('tweet np array',type(np.array([tweet])),np.array([tweet]))
-    #pred = classifier.predict(vectorizer.transform(np.array([tweet])))
-    input = str(tweet.encode('ascii','ignore'))
-    input = input.split()
-    print('input',input)
-    #print('type',type(input))
-    pred = classifier.predict(vectorizer.transform([input]))
 
-    #pred = classifier.predict(vectorizer.transform(np.array(tweet['text'])))
+    text = str(tweet.encode('ascii','ignore'))
 
-    print('classify done')
+    blob = TextBlob(text)
+    sent = blob.sentiment.polarity
 
-    print('a',str(pred[0]))
+    return sent, text
 
-    return str(pred[0])
+
 
 
 def vectorize_tweet(tweet):
@@ -60,8 +61,6 @@ def vectorize_tweet(tweet):
     x = components[0, 0]
     y = components[0, 1]
 
-    print('vectorize done')
-
     return str(x), str(y)
 
 
@@ -70,21 +69,35 @@ def create_stream():
     Celery task that connects to the twitter stream and runs a loop, periodically
     emitting tweet information to all connected clients.
     """
+    senti_list = []
+    text_list = []
+    x_list = []
+    y_list = []
 
-    with open('data/collect_zika.json', 'r') as f:
+
+    count = 0
+    with open('./data/collect_zika.json', 'r') as f:
         for line in f:
             tweet = json.loads(line)
-            sentiment = classify_tweet(tweet['text'])
+            sentiment, words = classify_tweet(tweet['text'])
+            senti_list.append(sentiment)
+            text_list.append(words)
             x, y = vectorize_tweet(tweet['text'])
-            #print('x,y',x,y)
-            # print('tweet', {'id': w['id'],
-            #                      'text': w['text'],
-            #                      'sentiment': sentiment,
-            #                      'x': x,
-            #                      'y': y})
-        time.sleep(1)
+            x_list.append(x)
+            y_list.append(y)
+            count +=1
 
+    print('count',count)
+    f = open('./data/sentiment.csv', 'wt')
+    try:
+        writer = csv.writer(f)
+        writer.writerow(('x', 'y', 'senti', 'text'))
+        for i in range(0,count):
+            writer.writerow((x_list[i], y_list[i], senti_list[i], text_list[i]))
+    finally:
+        f.close()
 
 
 if __name__ == '__main__':
     create_stream()
+
