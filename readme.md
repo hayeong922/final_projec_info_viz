@@ -20,6 +20,40 @@ Collaborators:
 
 ## Run the Code
 
+#collect
+
+To run this code, first edit config.py with your configuration, then:
+
+mkdir data python collect.py -q zika -d data
+
+It will produce the list of tweets for the query "zika" in the file data/collect_zika.json
+
+# dependency
+
+codes can be run on both python version 2.x or 3.x, in case of tokenizer.py is python 2.x should be used.
+
+Numpy
+$pip install numpy
+
+Tweepy
+$pip install tweepy
+
+Gensim: 
+$pip install gensim
+
+Textblob:
+$ pip install -U textblob
+$ python -m textblob.download_corpora python -m textblob.download_corpora
+
+Pattern:
+$ pip install pattern
+
+Sklearn:
+$ pip install -U scikit-learn
+
+NLTK:
+$ sudo pip install -U nltk
+
 
 
 ## References
