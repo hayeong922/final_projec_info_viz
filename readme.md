@@ -23,4 +23,16 @@ Collaborators:
 
 
 ## References
+* For the bootstrap page:
+[Bootstrap CSS](http://getbootstrap.com/css/)
+[Bootstrap Components](http://getbootstrap.com/components/)
+[Bootstrap Javascript](http://getbootstrap.com/javascript/)
+
+* [dc.js heatmap example](https://github.com/dc-js/dc.js/blob/master/web/examples/heat.html)
+
+* [dc.js row chart example](https://github.com/dc-js/dc.js/blob/master/web/examples/row.html)
+
+* [dc.js datatable example](https://github.com/dc-js/dc.js/blob/master/web/examples/table-on-aggregated-data.html)
+
+* [dc.js line chart time series](http://www.d3noob.org/2013/08/add-line-chart-in-dcjs.html)
 
