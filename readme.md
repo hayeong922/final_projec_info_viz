@@ -85,4 +85,5 @@ $ sudo pip install -U nltk
 	
 * Data collecting:
 	* [Twitter Streaming APIs](https://dev.twitter.com/streaming/overview)
+	* [Twitter Stream Downloader](https://gist.github.com/bonzanini/af0463b927433c73784d)
 
