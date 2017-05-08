@@ -45,6 +45,5 @@ Collaborators:
 	* [tokenizer](http://sentiment.christopherpotts.net/code-data/happyfuntokenizing.py)
 	
 * Data collecting:
-	
-	
+	* [Twitter Streaming APIs](https://dev.twitter.com/streaming/overview)
 
