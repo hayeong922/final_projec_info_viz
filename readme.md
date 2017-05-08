@@ -16,6 +16,11 @@ Collaborators:
 * static: some source files and documentations
 * csv_generate.py: py code used to generate the final csv file
 * topic.model.py: py code used to get most possible topic of each tweets, the output is topic.csv
+* collect.py: collecte twitter data
+* cofig.py: should edit to run collect.py 
+* build_model.py: build mode for word2vec and pca and save it in pkl form
+* tokenizer.py: tokenize the input of tweet
+* new_test: compute sentiment score, and convert tweet into 2 coordinates using PCA
 * tst.csv: the integrated data file used as input of visualization code
 
 ## Run the Code
@@ -28,7 +33,7 @@ mkdir data python collect.py -q zika -d data
 
 It will produce the list of tweets for the query "zika" in the file data/collect_zika.json
 
-# dependency
+##dependency
 
 codes can be run on both python version 2.x or 3.x, in case of tokenizer.py is python 2.x should be used.
 
