@@ -44,7 +44,7 @@ Collaborators:
 	
 	* [tokenizer](http://sentiment.christopherpotts.net/code-data/happyfuntokenizing.py)
 	
-* data collecting:
+* Data collecting:
 	
 	
 
