@@ -1,10 +1,14 @@
-# To run this code, first edit config.py with your configuration, then:
-#
-# mkdir data
-# python collect.py -q zika -d data
-#
-# It will produce the list of tweets for the query "zika"
-# in the file data/collect_zika.json
+'''
+To run this code, first edit config.py with your configuration, then:
+
+mkdir data
+python collect.py -q zika -d data
+
+It will produce the list of tweets for the query "zika"
+in the file data/collect_zika.json
+'''
+
+# part of code was adpoted from https://gist.github.com/bonzanini/af0463b927433c73784d
 
 import tweepy
 from tweepy import Stream
