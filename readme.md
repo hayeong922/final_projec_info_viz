@@ -33,6 +33,16 @@ mkdir data python collect.py -q zika -d data
 
 It will produce the list of tweets for the query "zika" in the file data/collect_zika.json
 
+For visualization:
+go to the directory where the code in loacated, in this case tst.hml
+python httpserver:$ python -m SimpleHTTPServer 8080
+
+goto
+http://127.0.0.1:8080
+
+and click on tst.html and will see the visualization
+
+
 ## Dependency
 
 codes can be run on both python version 2.x or 3.x, in case of tokenizer.py is python 2.x should be used.
