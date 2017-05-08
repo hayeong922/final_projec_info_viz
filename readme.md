@@ -1,2 +1,7 @@
-## Final Project - INFO 5602
-Visualization Panel for Zika Tweets Exploration
+## Visualization Panel for Zika Tweets Exploration 
+Final Project - INFO 5602
+
+Collaborators:
+
+	Linzi Xing
+	Hayeong Song
