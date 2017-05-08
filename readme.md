@@ -25,7 +25,7 @@ Collaborators:
 
 ## Run the Code
 
-#collect
+collect.py
 
 To run this code, first edit config.py with your configuration, then:
 
@@ -33,7 +33,7 @@ mkdir data python collect.py -q zika -d data
 
 It will produce the list of tweets for the query "zika" in the file data/collect_zika.json
 
-##dependency
+## Dependency
 
 codes can be run on both python version 2.x or 3.x, in case of tokenizer.py is python 2.x should be used.
 
