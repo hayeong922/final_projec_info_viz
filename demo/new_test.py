@@ -12,28 +12,18 @@ from gensim.models import Word2Vec
 from tokenizer import *
 import json
 import csv
-
-
 from textblob import TextBlob
 
-
+# to run this code build_model.py first
 
 # word2vec and pca part  of code was adopted from https://github.com/jdwittenauer/twitter-viz-demo
-
-
-# Load transforms and models
-#vectorizer = joblib.load(path + 'vectorizer.pkl')
-#classifier = joblib.load(path + 'classifier.pkl')
 pca = joblib.load(path + 'pca.pkl')
 word2vec = Word2Vec.load(path + 'word2vec.pkl')
-
-
-
 
 def classify_tweet(tweet):
     """
     Classify a tweet sentiment polarity score.
-    Poliarity score between 0 to 1 postive, -1 to 0 negativce
+    Poliarity score between -1.0 to 1.0 postive, -1 to 0 negativce
     """
 
     text = str(tweet.encode('ascii','ignore'))
@@ -42,9 +32,6 @@ def classify_tweet(tweet):
     sent = blob.sentiment.polarity
 
     return sent, text
-
-
-    
 
 def vectorize_tweet(tweet):
     """
