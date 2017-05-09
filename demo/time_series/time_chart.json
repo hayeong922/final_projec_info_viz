@@ -1,0 +1,476 @@
+{
+  "axes": [
+    {
+      "scale": "x",
+      "title": "Time",
+      "type": "x"
+    },
+    {
+      "scale": "y",
+      "title": "Freq",
+      "type": "y"
+    }
+  ],
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "col": "ENGLISH",
+          "idx": 1490232600000,
+          "val": 5.0
+        },
+        {
+          "col": "PORTUGUESE",
+          "idx": 1490232600000,
+          "val": 1.0
+        },
+        {
+          "col": "SPANISH",
+          "idx": 1490232600000,
+          "val": 2.0
+        },
+        {
+          "col": "ENGLISH",
+          "idx": 1490233200000,
+          "val": 21.0
+        },
+        {
+          "col": "PORTUGUESE",
+          "idx": 1490233200000,
+          "val": 6.0
+        },
+        {
+          "col": "SPANISH",
+          "idx": 1490233200000,
+          "val": 3.0
+        },
+        {
+          "col": "ENGLISH",
+          "idx": 1490233800000,
+          "val": 15.0
+        },
+        {
+          "col": "PORTUGUESE",
+          "idx": 1490233800000,
+          "val": 6.0
+        },
+        {
+          "col": "SPANISH",
+          "idx": 1490233800000,
+          "val": 7.0
+        },
+        {
+          "col": "ENGLISH",
+          "idx": 1490234400000,
+          "val": 29.0
+        },
+        {
+          "col": "PORTUGUESE",
+          "idx": 1490234400000,
+          "val": 9.0
+        },
+        {
+          "col": "SPANISH",
+          "idx": 1490234400000,
+          "val": 13.0
+        },
+        {
+          "col": "ENGLISH",
+          "idx": 1490235000000,
+          "val": 19.0
+        },
+        {
+          "col": "PORTUGUESE",
+          "idx": 1490235000000,
+          "val": 5.0
+        },
+        {
+          "col": "SPANISH",
+          "idx": 1490235000000,
+          "val": 1.0
+        },
+        {
+          "col": "ENGLISH",
+          "idx": 1490235600000,
+          "val": 11.0
+        },
+        {
+          "col": "PORTUGUESE",
+          "idx": 1490235600000,
+          "val": 25.0
+        },
+        {
+          "col": "SPANISH",
+          "idx": 1490235600000,
+          "val": 11.0
+        },
+        {
+          "col": "ENGLISH",
+          "idx": 1490236200000,
+          "val": 11.0
+        },
+        {
+          "col": "PORTUGUESE",
+          "idx": 1490236200000,
+          "val": 10.0
+        },
+        {
+          "col": "SPANISH",
+          "idx": 1490236200000,
+          "val": 6.0
+        },
+        {
+          "col": "ENGLISH",
+          "idx": 1490236800000,
+          "val": 3.0
+        },
+        {
+          "col": "PORTUGUESE",
+          "idx": 1490236800000,
+          "val": 11.0
+        },
+        {
+          "col": "SPANISH",
+          "idx": 1490236800000,
+          "val": 6.0
+        },
+        {
+          "col": "ENGLISH",
+          "idx": 1490237400000,
+          "val": 16.0
+        },
+        {
+          "col": "PORTUGUESE",
+          "idx": 1490237400000,
+          "val": 3.0
+        },
+        {
+          "col": "SPANISH",
+          "idx": 1490237400000,
+          "val": 2.0
+        },
+        {
+          "col": "ENGLISH",
+          "idx": 1490238000000,
+          "val": 8.0
+        },
+        {
+          "col": "PORTUGUESE",
+          "idx": 1490238000000,
+          "val": 5.0
+        },
+        {
+          "col": "SPANISH",
+          "idx": 1490238000000,
+          "val": 7.0
+        },
+        {
+          "col": "ENGLISH",
+          "idx": 1490238600000,
+          "val": 15.0
+        },
+        {
+          "col": "PORTUGUESE",
+          "idx": 1490238600000,
+          "val": 9.0
+        },
+        {
+          "col": "SPANISH",
+          "idx": 1490238600000,
+          "val": 4.0
+        },
+        {
+          "col": "ENGLISH",
+          "idx": 1490239200000,
+          "val": 20.0
+        },
+        {
+          "col": "PORTUGUESE",
+          "idx": 1490239200000,
+          "val": 8.0
+        },
+        {
+          "col": "SPANISH",
+          "idx": 1490239200000,
+          "val": 5.0
+        },
+        {
+          "col": "ENGLISH",
+          "idx": 1490239800000,
+          "val": 13.0
+        },
+        {
+          "col": "PORTUGUESE",
+          "idx": 1490239800000,
+          "val": 9.0
+        },
+        {
+          "col": "SPANISH",
+          "idx": 1490239800000,
+          "val": 7.0
+        },
+        {
+          "col": "ENGLISH",
+          "idx": 1490240400000,
+          "val": 20.0
+        },
+        {
+          "col": "PORTUGUESE",
+          "idx": 1490240400000,
+          "val": 11.0
+        },
+        {
+          "col": "SPANISH",
+          "idx": 1490240400000,
+          "val": 5.0
+        },
+        {
+          "col": "ENGLISH",
+          "idx": 1490241000000,
+          "val": 22.0
+        },
+        {
+          "col": "PORTUGUESE",
+          "idx": 1490241000000,
+          "val": 23.0
+        },
+        {
+          "col": "SPANISH",
+          "idx": 1490241000000,
+          "val": 1.0
+        },
+        {
+          "col": "ENGLISH",
+          "idx": 1490241600000,
+          "val": 15.0
+        },
+        {
+          "col": "PORTUGUESE",
+          "idx": 1490241600000,
+          "val": 6.0
+        },
+        {
+          "col": "SPANISH",
+          "idx": 1490241600000,
+          "val": 6.0
+        },
+        {
+          "col": "ENGLISH",
+          "idx": 1490242200000,
+          "val": 18.0
+        },
+        {
+          "col": "PORTUGUESE",
+          "idx": 1490242200000,
+          "val": 8.0
+        },
+        {
+          "col": "SPANISH",
+          "idx": 1490242200000,
+          "val": 5.0
+        },
+        {
+          "col": "ENGLISH",
+          "idx": 1490242800000,
+          "val": 23.0
+        },
+        {
+          "col": "PORTUGUESE",
+          "idx": 1490242800000,
+          "val": 13.0
+        },
+        {
+          "col": "SPANISH",
+          "idx": 1490242800000,
+          "val": 11.0
+        },
+        {
+          "col": "ENGLISH",
+          "idx": 1490243400000,
+          "val": 24.0
+        },
+        {
+          "col": "PORTUGUESE",
+          "idx": 1490243400000,
+          "val": 23.0
+        },
+        {
+          "col": "SPANISH",
+          "idx": 1490243400000,
+          "val": 10.0
+        },
+        {
+          "col": "ENGLISH",
+          "idx": 1490244000000,
+          "val": 11.0
+        },
+        {
+          "col": "PORTUGUESE",
+          "idx": 1490244000000,
+          "val": 12.0
+        },
+        {
+          "col": "SPANISH",
+          "idx": 1490244000000,
+          "val": 5.0
+        },
+        {
+          "col": "ENGLISH",
+          "idx": 1490244600000,
+          "val": 12.0
+        },
+        {
+          "col": "PORTUGUESE",
+          "idx": 1490244600000,
+          "val": 10.0
+        },
+        {
+          "col": "SPANISH",
+          "idx": 1490244600000,
+          "val": 1.0
+        },
+        {
+          "col": "ENGLISH",
+          "idx": 1490245200000,
+          "val": 23.0
+        },
+        {
+          "col": "PORTUGUESE",
+          "idx": 1490245200000,
+          "val": 13.0
+        },
+        {
+          "col": "SPANISH",
+          "idx": 1490245200000,
+          "val": 12.0
+        },
+        {
+          "col": "ENGLISH",
+          "idx": 1490245800000,
+          "val": 19.0
+        },
+        {
+          "col": "PORTUGUESE",
+          "idx": 1490245800000,
+          "val": 15.0
+        },
+        {
+          "col": "SPANISH",
+          "idx": 1490245800000,
+          "val": 4.0
+        },
+        {
+          "col": "ENGLISH",
+          "idx": 1490246400000,
+          "val": 26.0
+        },
+        {
+          "col": "PORTUGUESE",
+          "idx": 1490246400000,
+          "val": 16.0
+        },
+        {
+          "col": "SPANISH",
+          "idx": 1490246400000,
+          "val": 2.0
+        },
+        {
+          "col": "ENGLISH",
+          "idx": 1490247000000,
+          "val": 1.0
+        },
+        {
+          "col": "PORTUGUESE",
+          "idx": 1490247000000,
+          "val": 2.0
+        },
+        {
+          "col": "SPANISH",
+          "idx": 1490247000000,
+          "val": 0.0
+        }
+      ]
+    }
+  ],
+  "height": 500,
+  "legends": [
+    {
+      "fill": "color",
+      "offset": 0,
+      "properties": {},
+      "title": "Matches"
+    }
+  ],
+  "marks": [
+    {
+      "from": {
+        "data": "table",
+        "transform": [
+          {
+            "keys": [
+              "data.col"
+            ],
+            "type": "facet"
+          }
+        ]
+      },
+      "marks": [
+        {
+          "properties": {
+            "enter": {
+              "stroke": {
+                "field": "data.col",
+                "scale": "color"
+              },
+              "strokeWidth": {
+                "value": 2
+              },
+              "x": {
+                "field": "data.idx",
+                "scale": "x"
+              },
+              "y": {
+                "field": "data.val",
+                "scale": "y"
+              }
+            }
+          },
+          "type": "line"
+        }
+      ],
+      "type": "group"
+    }
+  ],
+  "padding": "auto",
+  "scales": [
+    {
+      "domain": {
+        "data": "table",
+        "field": "data.idx"
+      },
+      "name": "x",
+      "range": "width",
+      "type": "time"
+    },
+    {
+      "domain": {
+        "data": "table",
+        "field": "data.val"
+      },
+      "name": "y",
+      "nice": true,
+      "range": "height"
+    },
+    {
+      "domain": {
+        "data": "table",
+        "field": "data.col"
+      },
+      "name": "color",
+      "range": "category20",
+      "type": "ordinal"
+    }
+  ],
+  "width": 960
+}
